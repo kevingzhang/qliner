@@ -1,0 +1,14 @@
+<template name='store'>
+  <div>this is my store {{storeInfo.name}}</div>
+  <div>
+    {{#each storeQueue}}
+      <div>{{customer.phoneNumbers}}/{{customer.emails}}/{{partyOf}}/{{waitTime}}/{{partyOf}}/{{inTime}}/{{status}}</div>
+
+    {{/each}}
+
+  </div>
+  <div>
+    <input type='text' id='addMePhoneNumber'/><input type='text' id='addMePartyOf'/><button id='addMeButton' class='btn btn-primary'>Add Me</button>
+  </div>
+
+</template>

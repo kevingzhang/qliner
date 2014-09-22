@@ -4,7 +4,17 @@
 # but you can also edit it by hand.
 
 meteor-platform
-autopublish
-insecure
 iron:router
+coffeescript
+less
+bootstrap
+mizzao:bootboxjs
+email
+accounts-password
+accounts-facebook
+accounts-ui
+accounts-github
+accounts-google
+accounts-twitter
+accounts-base
 

@@ -1,7 +1,7 @@
-
+console.log "App started"
 App.helpers = {
 }
 
 
-App.helpers.forEach (helper, key)->
+for key, helper of App.helpers
   Template.registerHelpr key, helper
