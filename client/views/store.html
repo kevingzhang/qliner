@@ -1,14 +1,37 @@
 <template name='store'>
   <div>this is my store {{storeInfo.name}}</div>
   <div>
-    {{#each storeQueue}}
-      <div>{{customer.phoneNumbers}}/{{customer.emails}}/{{partyOf}}/{{waitTime}}/{{partyOf}}/{{inTime}}/{{status}}</div>
-
-    {{/each}}
-
+    <table>
+      <thead>
+        <tr>
+          <th>Phone number/Email</th>
+          <th>Party of </th>
+          <th>Waiting</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+      {{#each storeQueue}}
+        <tr>
+          <td>{{displayFakeName}}</td>
+          <td>{{partyOf}}</td>
+          <td>{{waitTime}}</td>
+          <td>{{status}}</td>
+          <td>
+            <!-- <button data-qid='{{_id}}' class='btn btn-primary'>table is ready</button>
+            <button data-qid='{{_id}}' class='btn btn-default'>preparing table</button>
+            <button data-qid='{{_id}}' class='btn btn-default'>user cancelled</button>
+            <button data-qid='{{_id}}' class='btn btn-default kickoff-btn'>kick off</button> -->
+          </td>
+        
+        </tr>
+      {{/each}}
+      </tbody>
+    </table>
   </div>
   <div>
-    <input type='text' id='addMePhoneNumber'/><input type='text' id='addMePartyOf'/><button id='addMeButton' class='btn btn-primary'>Add Me</button>
+    <input type='text' id='addMePhoneNumber' placeholder='phone#'/> Or <input type='email' id='addMeEmail' placeholder='email'/> <input type='text' id='addMePartyOf' placeholder='partyof'/><button id='addMeButton' class='btn btn-primary'>Add Me</button>
   </div>
 
 </template>

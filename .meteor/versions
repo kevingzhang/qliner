@@ -51,6 +51,7 @@ minimongo@1.0.3
 mizzao:bootboxjs@4.3.0
 mobile-status-bar@1.0.0
 mongo@1.0.5
+mrt:moment@2.8.1
 npm-bcrypt@0.7.7
 oauth1@1.1.0
 oauth2@1.1.0

@@ -1,0 +1,6 @@
+<template name='storeKeeperSelector'>
+  <h1>Select a store {{>loginButtons align='right'}}</h1>
+  {{#each accessableStores}}
+    <div id='{{_id}}' class='store'>{{storeName}}  {{storeAddress}} {{role}} </div>
+  {{/each}}
+</template>
