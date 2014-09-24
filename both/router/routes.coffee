@@ -27,6 +27,10 @@ Router.map ()->
   @route 'storeKeeper',
     path: 'storekeeper'
     template: 'storeKeeperSelector'
+    onBeforeAction: (pause)->
+      unless Meteor.user()
+        @render 'login'
+        pause()
   @route 'storeKeeper',
     path: 'storekeeper/:storeId'
     onBeforeAction: (pause)->

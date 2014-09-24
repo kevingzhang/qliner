@@ -4,6 +4,23 @@ Template.storeKeeper.events
     if qid?
       queueColl.update qid, $unset:{status:0}
     # ...
+  'click .table-ready': (e,t)->
+    qid = e.target.getAttribute 'data-qid'
+    if qid?
+      queueColl.update qid, $set:{status:'Table is ready'}
+
+  'click .prepareing-table': (e,t)->
+    qid = e.target.getAttribute 'data-qid'
+    if qid?
+      queueColl.update qid, $set:{status:'Preparing table'}
+
+  'click .user-cancel': (e,t)->
+    qid = e.target.getAttribute 'data-qid'
+    if qid?
+      queueColl.update qid, $set:{status:'User cancelled'}
+      Meteor.setTimeout ()->
+        queueColl.update qid, $unset:{status:0}
+        , 5000
 
 Template.storeKeeper.helpers
   role: () ->

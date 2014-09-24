@@ -1,6 +1,8 @@
 <template name='storeKeeperSelector'>
   <h1>Select a store {{>loginButtons align='right'}}</h1>
+  <ul>
   {{#each accessableStores}}
-    <div id='{{_id}}' class='store'>{{storeName}}  {{storeAddress}} {{role}} </div>
+    <li><a href='/storekeeper/{{_id}}' class='store'>{{storeName}}  {{storeAddress}} {{role}} </a></li>
   {{/each}}
+  </ul>
 </template>

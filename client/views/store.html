@@ -1,5 +1,6 @@
 <template name='store'>
-  <div>this is my store {{storeInfo.name}}</div>
+  <h1>{{storeInfo.name}}</h1>
+  <div>{{storeInfo.property.storeAddress}}</div>
   <div>
     <table>
       <thead>
@@ -13,7 +14,7 @@
       </thead>
       <tbody>
       {{#each storeQueue}}
-        <tr>
+        <tr class='{{isMyPosition _id ../storeInfo._id}}'>
           <td>{{displayFakeName}}</td>
           <td>{{partyOf}}</td>
           <td>{{waitTime}}</td>
@@ -31,7 +32,7 @@
     </table>
   </div>
   <div>
-    <input type='text' id='addMePhoneNumber' placeholder='phone#'/> Or <input type='email' id='addMeEmail' placeholder='email'/> <input type='text' id='addMePartyOf' placeholder='partyof'/><button id='addMeButton' class='btn btn-primary'>Add Me</button>
+    <input type='text' id='addMePhoneNumber' placeholder='phone#' value='{{localSavedPhoneNumber}}'/> Or <input type='email' id='addMeEmail' placeholder='email' value='{{localSavedEmail}}'/> <input type='text' id='addMePartyOf' placeholder='partyof'/><button id='addMeButton' class='btn btn-primary'>Add Me</button>
   </div>
 
 </template>

@@ -13,19 +13,24 @@ Template.store.events
         bootbox.alert "Phone number is not valid, try again please"
         return 
       phoneNumber = phoneNumber.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3')
-      console.log phoneNumber
+      
       
       Meteor.call 'addMeInByPhoneNumber', storeId, phoneNumber, email, partyOfNumber, (e,r)->
         if e?
           console.log 'ERROR: Meteor.call addMeInByPhoneNumber :' , e.message
           return 
+        App.Util.setCookie 'phoneNumber', phoneNumber
+        if !!email
+          App.Util.setCookie 'email', email
         bootbox.alert "You are added! Your name will display as #{r}"
+
       # ...
     else if !!email
       Meteor.call 'addMeInByEmail', storeId, email, partyOfNumber, (e,r)->
         if e?
           console.log 'ERROR: Meteor.call addMeInByEmail :' , e.message
           return 
+        App.Util.setCookie 'email', email
         bootbox.alert "You are added! Your name will display as #{r}"
     else
       bootbox.alert "Please input either phone number or email"
@@ -36,4 +41,25 @@ Template.store.helpers
     nowTime = Session.get('nowTime')
     
     moment.duration(nowTime - @inTime).humanize()
-    # ...
+
+  localSavedPhoneNumber:()->
+    App.Util.getCookie('phoneNumber')
+
+  localSavedEmail:()->
+    App.Util.getCookie('email')
+
+  isMyPosition:(qId, storeId)->
+    console.log "isMyPosition, #{qId}, #{storeId}"
+    myQid = Session.get 'myPositionQueueId'
+
+    unless myQid?
+      Meteor.call 'getMyPositionQueueId', storeId, App.Util.getCookie('phoneNumber'), App.Util.getCookie('email'), (e,r)->
+        if e?
+          console.log 'getMyPositionQueueId ERROR:', e.message
+        else
+          Session.set 'myPositionQueueId', r
+
+    if qId is myQid
+      return 'my-position'
+    else
+      return ''
