@@ -22,7 +22,8 @@ Template.store.events
         App.Util.setCookie 'phoneNumber', phoneNumber
         if !!email
           App.Util.setCookie 'email', email
-        bootbox.alert "You are added! Your name will display as #{r}"
+        Session.set 'myPositionQueueId', r.queueId
+        bootbox.alert "You are added! Your name will display as #{r.displayFakeName}"
 
       # ...
     else if !!email
@@ -31,7 +32,8 @@ Template.store.events
           console.log 'ERROR: Meteor.call addMeInByEmail :' , e.message
           return 
         App.Util.setCookie 'email', email
-        bootbox.alert "You are added! Your name will display as #{r}"
+        Session.set 'myPositionQueueId', r.queueId
+        bootbox.alert "You are added! Your name will display as #{r.displayFakeName}"
     else
       bootbox.alert "Please input either phone number or email"
 
