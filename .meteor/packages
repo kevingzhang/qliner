@@ -18,4 +18,5 @@ accounts-google
 accounts-twitter
 accounts-base
 mrt:moment
+mrt:twilio-meteor
 

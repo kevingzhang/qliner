@@ -17,13 +17,24 @@ Router.map ()->
       h1 = Meteor.subscribe 'storeInfo', @params.storeId
       h2 = Meteor.subscribe 'storeQueue', @params.storeId
       return [h1,h2]
+
+
     data:()->
+      
+
       storeInfo = storeColl.findOne @params.storeId
       storeQueue = queueColl.find storeId:@params.storeId
 
       return {
               storeInfo : storeInfo
               storeQueue: storeQueue}
+
+    action:()->
+      if @ready()
+        @render()
+      else
+        @render('loading')
+
   @route 'storeKeeper',
     path: 'storekeeper'
     template: 'storeKeeperSelector'

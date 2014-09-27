@@ -1,5 +1,7 @@
 Template.store.rendered = (e,t)->
   unless (Session.get 'myPositionQueueId')?
+    console.log "in rendered, data is ", @data
+    unless @data.storeInfo? then return
     Meteor.call 'getMyPositionQueueId', @data.storeInfo._id, App.Util.getCookie('phoneNumber'), App.Util.getCookie('email'), (e,r)->
       if e?
         console.log 'getMyPositionQueueId ERROR:', e.message
@@ -74,7 +76,10 @@ Template.store.helpers
     myQid = Session.get 'myPositionQueueId'
     unless myQid? then return status is 'none'
     queueObj = queueColl.findOne myQid 
-    return status is queueObj.status
+    if queueObj?
+      return status is queueObj.status
+    else
+      return status is 'none'
 
 
 
