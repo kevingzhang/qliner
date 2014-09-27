@@ -14,7 +14,7 @@
       </thead>
       <tbody>
       {{#each storeQueue}}
-        <tr class='{{isMyPosition _id ../storeInfo._id}}'>
+        <tr class='{{sessionEqualtoString 'myPositionQueueId' _id 'my-position' ''}}'>
           <td>{{displayFakeName}}</td>
           <td>{{partyOf}}</td>
           <td>{{waitTime}}</td>
@@ -31,8 +31,16 @@
       </tbody>
     </table>
   </div>
+  {{#if inQueueStatus 'none'}} 
   <div>
     <input type='text' id='addMePhoneNumber' placeholder='phone#' value='{{localSavedPhoneNumber}}'/> Or <input type='email' id='addMeEmail' placeholder='email' value='{{localSavedEmail}}'/> <input type='text' id='addMePartyOf' placeholder='partyof'/><button id='addMeButton' class='btn btn-primary'>Add Me</button>
   </div>
+  {{/if}}
+  {{#if inQueueStatus 'waiting'}}
+  <button id='cancelMeButton' class='btn btn-primary'>Cancel</button><button id='preorderButton' class='btn btn-primary'>PreOrder</button>
+  {{/if}}
+  {{#if inQueueStatus 'seated'}}
+  <button id='orderButton' class='btn btn-primary'>Order</button><button id='checkButton' class='btn btn-primary'>Check</button>
+  {{/if}}
 
 </template>

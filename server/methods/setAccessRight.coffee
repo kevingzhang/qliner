@@ -1,4 +1,5 @@
 Meteor.methods
+
   addUserAccessToStore: (userId, storeId, right)->
     if Meteor.user()?.emails[0]?.address isnt 'asdf@asdf.com'
       throw new Meteor.Error 'Only Admin can access addUserAccessToStore function'
@@ -48,4 +49,14 @@ Meteor.methods
       return Meteor.call 'removeUserAccessToStore', user._id, storeId, right
     else
       throw new Meteor.Error "Cannot find user by email #{email}"
+
+  getHighestAccessRightToStore:(userId, storeId)->
+    storeObj = storeColl.findOne _id:storeId
+    unless storeObj? then return ''
+    if storeObj.access.admin.indexOf(userId) isnt -1 then return 'admin'
+    if storeObj.access.keeper.indexOf(userId) isnt -1 then return 'keeper'
+    if storeObj.access.waiter.indexOf(userId) isnt -1 then return 'waiter'
+    if storeObj.access.staff.indexOf(userId) isnt -1 then return 'staff'
+    return ''
+
 
