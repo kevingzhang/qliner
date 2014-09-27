@@ -1,4 +1,5 @@
-
+UI.registerHelper 'equals', (v1, v2)->
+  return v1 is v2
 
 UI.registerHelper 'sessionEqualtoTemplate' , ()->
   #console.log "sessionEqual, ", @sessionName, @templateTrue
@@ -30,7 +31,6 @@ UI.registerHelper 'momentTransFormater', (timeString, fmtIn, fmtOut)->
 
 UI.registerHelper 'momentFormater', (dateTime, fmtOut)->
   return moment(dateTime).format(fmtOut)
-
 
 
 

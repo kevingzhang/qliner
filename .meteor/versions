@@ -7,6 +7,7 @@ accounts-password@1.0.2
 accounts-twitter@1.0.1
 accounts-ui-unstyled@1.1.2
 accounts-ui@1.1.1
+anticoders:fake@0.4.0
 application-configuration@1.0.2
 autoupdate@1.1.1
 base64@1.0.0
@@ -14,7 +15,6 @@ binary-heap@1.0.0
 blaze-tools@1.0.0
 blaze@2.0.1
 boilerplate-generator@1.0.0
-bootstrap@1.0.1
 callback-hook@1.0.0
 check@1.0.1
 coffeescript@1.0.3
@@ -49,6 +49,7 @@ meteor@1.1.1
 minifiers@1.1.0
 minimongo@1.0.3
 mizzao:bootboxjs@4.3.0
+mizzao:bootstrap-3@3.2.0
 mobile-status-bar@1.0.0
 mongo@1.0.6
 mrt:moment@2.8.1

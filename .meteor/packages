@@ -4,10 +4,8 @@
 # but you can also edit it by hand.
 
 meteor-platform
-iron:router
 coffeescript
 less
-bootstrap
 mizzao:bootboxjs
 email
 accounts-password
@@ -19,4 +17,7 @@ accounts-twitter
 accounts-base
 mrt:moment
 mrt:twilio-meteor
+iron:router
+anticoders:fake
+mizzao:bootstrap-3
 

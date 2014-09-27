@@ -1,35 +1,37 @@
 <template name='storeKeeper'>
   <h1>I am {{role}} of {{storeInfo._id}}/{{storeInfo.name}} {{> loginButtons align='right'}}</h1>
-  <div>
-    <table>
-      <thead>
-        <tr>
-          <th>Phone number/Email</th>
-          <th>Party of </th>
-          <th>Waiting</th>
-          <th>Status</th>
-          
-        </tr>
-      </thead>
-      <tbody>
-      {{#each storeQueue}}
-        <tr>
-          <td>{{displayFullName}}</td>
-          <td>{{partyOf}}</td>
-          <td>{{waitTime}}</td>
-          <td>{{status}}</td>
-        </tr>
-        <tr>
-          <td colspan='4'>
-            <button data-qid='{{_id}}' class='btn btn-primary table-ready'>table is ready</button>
-            <button data-qid='{{_id}}' class='btn btn-default prepareing-table'>preparing table</button>
-            <button data-qid='{{_id}}' class='btn btn-default user-cancel'>user cancelled</button>
-            <button data-qid='{{_id}}' class='btn btn-default kickoff-btn'>kick off</button>
-          </td>
-        
-        </tr>
+  <div >
+
+    <div class='waiting-list'>
+    {{#each storeQueue}}
+      <div  data-qid='{{_id}}' class='container {{isSelectedQid _id}} listRow'>
+        <div class='col-xs-4'>{{displayFullName}}</div>
+        <div class='col-xs-1'>{{partyOf}}</div>
+        <div class='col-xs-3'>{{waitTime}}</div>
+        <div class='col-xs-4'>{{status}}</div>
+      </div>
+      {{#if notifications}}
+      {{#each notifications}}
+      {{#if equals name 'User Cancelled'}}
+        <div>
+          User cancelled. <button data-qid='{{../_id}}' class='btn btn-default kickoff-btn'>kick off</button>
+        </div>
+
+      {{/if}}
       {{/each}}
-      </tbody>
-    </table>
+      {{/if}}
+      {{#if isSelectedQid _id}}
+      <div>
+       
+          <button data-qid='{{_id}}' class='btn btn-primary table-ready'>table is ready</button>
+          <button data-qid='{{_id}}' class='btn btn-default prepareing-table'>preparing table</button>
+          <button data-qid='{{_id}}' class='btn btn-default user-cancel'>user cancelled</button>
+          <button data-qid='{{_id}}' class='btn btn-default kickoff-btn'>kick off</button>
+        
+      
+      </div>
+      {{/if}}
+    {{/each}}
+    </div>
   </div>
 </template>

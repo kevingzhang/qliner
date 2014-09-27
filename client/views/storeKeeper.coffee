@@ -1,4 +1,11 @@
 Template.storeKeeper.events
+  'click .listRow':(e,t)->
+    qId = e.currentTarget.getAttribute 'data-qid'
+    if qId?
+      if Session.equals 'storeKeeper/selectedQid', qId
+        Session.set 'storeKeeper/selectedQid', null
+      else
+        Session.set 'storeKeeper/selectedQid', qId
   'click .kickoff-btn': (e,t) ->
     qid = e.target.getAttribute 'data-qid'
     if qid?
@@ -47,5 +54,7 @@ Template.storeKeeper.helpers
     
     moment.duration(nowTime - @inTime).humanize()
 
+  isSelectedQid:(qId)->
+    return if Session.equals('storeKeeper/selectedQid', qId) then "selected" else ''
 
     
