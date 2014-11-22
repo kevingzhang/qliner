@@ -34,11 +34,11 @@ Template.storeKeeper.helpers
     unless Meteor.userId()
       return 'not loggedin'
     console.log "this", @
-    if (@storeInfo.access.admin.indexOf  Meteor.userId()) isnt -1
+    if (@storeInfo.access?.admin?.indexOf  Meteor.userId()) > -1
       return 'admin'
-    if (@storeInfo.access.waiter.indexOf  Meteor.userId()) isnt -1
+    if (@storeInfo.access?.waiter?.indexOf  Meteor.userId()) > -1
       return 'waiter'
-    if (@storeInfo.access.staff.indexOf  Meteor.userId()) isnt -1
+    if (@storeInfo.access?.staff?.indexOf  Meteor.userId()) > -1
       return 'staff'
     return 'na' 
 

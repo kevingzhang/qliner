@@ -31,6 +31,7 @@ Meteor.methods
         throw new Meteor.Error "removeUserAccessToStore: New right not handled: #{right}"
 
   addUserAccessToStoreByEmail: (email, storeId, right)->
+    console.log "addUserAccessToStoreByEmail: (#{email}, #{storeId}, #{right})"
     users = Meteor.users.find {emails:{$elemMatch:{address: email}}}
     if users.count() > 1
       throw new Meteor.Error "More than one user has same email address #{email}. User merge is needed. Not done yet"
@@ -52,11 +53,11 @@ Meteor.methods
 
   getHighestAccessRightToStore:(userId, storeId)->
     storeObj = storeColl.findOne _id:storeId
-    unless storeObj? then return ''
-    if storeObj.access.admin.indexOf(userId) isnt -1 then return 'admin'
-    if storeObj.access.keeper.indexOf(userId) isnt -1 then return 'keeper'
-    if storeObj.access.waiter.indexOf(userId) isnt -1 then return 'waiter'
-    if storeObj.access.staff.indexOf(userId) isnt -1 then return 'staff'
+    unless storeObj?.access? then return ''
+    if storeObj.access.admin?.indexOf(userId) > -1 then return 'admin'
+    if storeObj.access.keeper?.indexOf(userId) > -1 then return 'keeper'
+    if storeObj.access.waiter?.indexOf(userId) > -1 then return 'waiter'
+    if storeObj.access.staff?.indexOf(userId) > -1 then return 'staff'
     return ''
 
 
